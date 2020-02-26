@@ -245,7 +245,8 @@ class UsersController extends AUserData {
 							array $groups = [],
 							array $subadmin = [],
 							string $quota = '',
-							string $language = ''): DataResponse {
+							string $language = '',
+							bool $sendMail = true): DataResponse {
 		$user = $this->userSession->getUser();
 		$isAdmin = $this->groupManager->isAdmin($user->getUID());
 		$subAdminManager = $this->groupManager->getSubAdmin();
@@ -335,7 +336,7 @@ class UsersController extends AUserData {
 			}
 
 			// Send new user mail only if a mail is set
-			if ($email !== '') {
+			if ($email !== '' && $sendMail) {
 				$newUser->setEMailAddress($email);
 				try {
 					$emailTemplate = $this->newUserMailHelper->generateTemplate($newUser, $generatePasswordResetToken);

@@ -294,6 +294,10 @@ export default {
 			type: Array,
 			default: () => [],
 		},
+		sendMail: {
+			type: Boolean,
+			default: true,
+		},
 	},
 	data() {
 		return {
@@ -503,6 +507,7 @@ export default {
 				subadmin: this.newUser.subAdminsGroups.map(group => group.id),
 				quota: this.newUser.quota.id,
 				language: this.newUser.language.code,
+				sendMail: this.sendMail,
 			})
 				.then(() => {
 					this.resetForm()

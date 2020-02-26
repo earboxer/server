@@ -135,6 +135,13 @@
 						class="checkbox">
 					<label for="showStoragePath">{{ t('settings', 'Show storage path') }}</label>
 				</div>
+				<div>
+					<input id="sendWelcomeMail"
+						v-model="sendWelcomeMail"
+						type="checkbox"
+						class="checkbox">
+					<label for="sendWelcomeMail">{{ t('settings', 'Send email to new user') }}</label>
+				</div>
 			</AppNavigationSettings>
 		</AppNavigation>
 		<AppContent>
@@ -142,7 +149,8 @@
 				:users="users"
 				:show-config="showConfig"
 				:selected-group="selectedGroup"
-				:external-actions="externalActions" />
+				:external-actions="externalActions"
+				:send-mail="sendWelcomeMail" />
 		</AppContent>
 	</Content>
 </template>
@@ -194,6 +202,7 @@ export default {
 			selectedQuota: false,
 			externalActions: [],
 			loadingAddGroup: false,
+			sendWelcomeMail: true,
 			showConfig: {
 				showStoragePath: false,
 				showUserBackend: false,
